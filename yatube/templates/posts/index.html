@@ -1,30 +1,23 @@
-<!DOCTYPE html> <!-- Используется html 5 версии -->
 {% extends 'base.html' %}
-<html lang="ru"> <!-- Язык сайта - русский -->
+
 <head>
   {% block title %}
-    <meta charset="utf-8"> <!-- Кодировка сайта -->
-    <!-- Сайт готов работать с мобильными устройствами -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Загружаем фав-иконки -->
-    <meta name="theme-color" content="#ffffff">
-    <!-- Подключен файл со стандартными стилями бустрап -->
     <title>{{ title }}</title>
   {% endblock %}
 </head>
+
 <body>
-<main>
-  {% block content %}
-    <!-- класс py-5 создает отступы сверху и снизу блока -->
-    <div class="container py-5">
-      <h1>Последние обновления на сайте</h1>
-      <article>
+{% block content %}
+  <div class="container py-5">
+    <h1>Последние обновления на сайте</h1>
+    <article>
+      {% for posts in posts %}
         <ul>
           <li>
-            Автор: {{ posts.author }}
+            Автор: {{ posts.author.get_full_name }}
           </li>
           <li>
-            Дата публикации: {{ posts.pub_date }}
+            Дата публикации: {{ posts.pub_date|date:"d E Y" }}
           </li>
         </ul>
         <p>
@@ -33,14 +26,11 @@
         {% if post.group %}
           <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
         {% endif %}
-      </article>
-      <hr>
-      <!-- под последним постом нет линии -->
-    </div>
-  {% endblock %}
-</main>
-<!-- Использованы классы бустрапа: -->
-<!-- border-top: создаёт тонкую линию сверху блока -->
-<!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
-<!-- py-3: контент внутри размещается с отступом сверху и снизу -->
+        </article>
+        {% if not forloop.last %}
+          <hr>
+        {% endif %}
+      {% endfor %}
+  </div>
+{% endblock %}
 </body>
