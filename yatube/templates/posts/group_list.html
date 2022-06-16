@@ -1,38 +1,39 @@
 {% extends 'base.html' %}
 
-<head>
-  {% block title %}
-    <title>{{ title }}</title>
-  {% endblock %}
-</head>
+
+{% block title %}
+  <title>{{ title }}</title>
+{% endblock %}
+
 
 <body>
 {% block content %}
   <div class="container py-5">
-    {% for group in group %}
-      <h1>Записи сообщества {{ group.title }}</h1>
-      <p>
-        {{ group.decription }}
-      </p>
-      <article>
-        {% for posts in posts %}
-          <ul>
-            <li>
-              Автор: {{ posts.author }}
-            </li>
-            <li>
-              {{ posts.pub_date }}
-            </li>
-          </ul>
-          <p>
-            {{ posts.text }}
-          </p>
-          </article>
-        {% endfor %}
-      {% if not forloop.last %}
-        <hr>
-      {% endif %}
-    {% endfor %}
+
+    <h1>Записи сообщества {{ group.title }}</h1>
+  <hr>
+    <p>
+      {{ group.description }}
+    </p>
+  <hr>
+    <article>
+      {% for posts in posts %}
+        <ul>
+          <li>
+            Автор: {{ posts.author }}
+          </li>
+          <li>
+            {{ posts.pub_date }}
+          </li>
+        </ul>
+        <p>
+          {{ posts.text }}
+        </p>
+        </article>
+        {% if not forloop.last %}
+          <hr>
+        {% endif %}
+      {% endfor %}
   </div>
 {% endblock %}
 </body>

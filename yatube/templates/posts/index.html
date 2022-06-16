@@ -11,20 +11,20 @@
   <div class="container py-5">
     <h1>Последние обновления на сайте</h1>
     <article>
-      {% for posts in posts %}
+      {% for post in posts %}
         <ul>
           <li>
-            Автор: {{ posts.author.get_full_name }}
+            Автор: {{ post.author.get_full_name }}
           </li>
           <li>
-            Дата публикации: {{ posts.pub_date|date:"d E Y" }}
+            Дата публикации: {{ post.pub_date|date:"d E Y" }}
           </li>
         </ul>
         <p>
-          {{ posts.text }}
+          {{ post.text }}
         </p>
         {% if post.group %}
-          <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
+          <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы {{ group.title }}</a>
         {% endif %}
         </article>
         {% if not forloop.last %}
