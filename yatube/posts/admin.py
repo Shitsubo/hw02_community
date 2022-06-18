@@ -8,7 +8,6 @@ class PostAdmin(admin.ModelAdmin):
     """Создать объект для управления моделью в админке."""
     list_display = ('pk', 'text', 'pub_date', 'author', 'group',)
     """"Вывести в интерфейсе админки поля из бд:
-    
     pk - идентификатор
     text - содержание
     pub_date - дата публикации

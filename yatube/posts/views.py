@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
-from .constants import post_count
+from .constants import p_count
 from .models import Post, Group
 
 
