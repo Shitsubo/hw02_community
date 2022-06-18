@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
+
 {% block title %}
   <title>{{ group.title }}</title>
 {% endblock %}
-<body>
+
 {% block content %}
   <div class="container py-5">
-
     <h1>{{ group.title }}</h1>
     <hr>
     <p>
       {{ group.description }}
     </p>
     <hr>
+
     {% include '../includes/post_loop.html' %}
+
   </div>
 {% endblock %}
-</body>
+
