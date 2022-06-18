@@ -8,16 +8,15 @@ class Group(models.Model):
     """Создать таблицу Group с полями: title, slug, description."""
     title = models.CharField(
         max_length=200,
-        verbose_name='Название'
+        verbose_name='Название',
     )
     slug = models.SlugField(
         unique=True,
-        verbose_name='Уникальный фрагмент url адреса'
+        verbose_name='Уникальный фрагмент url адреса',
     )
     description = models.TextField(verbose_name='Описание группы')
 
     def __str__(self):
-        """Вернуть значение из поля tittle в виде текста."""
         return self.title
 
 
@@ -45,5 +44,4 @@ class Post(models.Model):
     )
 
     class Meta:
-        ordering = ['-pub_date']
-        """Отсортировать по дате от ранних к поздним"""
+        ordering = ('-pub_date',)

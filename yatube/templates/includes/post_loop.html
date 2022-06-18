@@ -10,5 +10,8 @@
   <p>
     {{ post.text|linebreaksbr }}
   </p>
+  {% if post.group and not group.title %}
+    <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы {{ post.group }}</a>
+  {% endif %}
 </article>
 
