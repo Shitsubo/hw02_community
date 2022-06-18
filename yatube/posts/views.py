@@ -1,26 +1,26 @@
 from django.shortcuts import render, get_object_or_404
+
+from .constants import post_count
 from .models import Post, Group
 
 
 def index(request):
     template = 'posts/index.html'
-    title = 'Это главная страница проекта Yatube'
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.select_related('author')[:post_count]
     context = {
-        'title': title,
         'posts': posts,
     }
+
     return render(request, template, context)
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    title = f'Записи сообщества {group}'
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = group.posts.select_related('author').filter(group=group)[:post_count]
     template = 'posts/group_list.html'
     context = {
         'group': group,
         'posts': posts,
-        'title': title,
     }
+
     return render(request, template, context)
