@@ -10,7 +10,7 @@ def index(request):
     и возвращает пользователю."""
     template = 'posts/index.html'
     """Взять шаблон из templates."""
-    posts = Post.objects.select_related('author')[:post_count]
+    posts = Post.objects.select_related('author')[:p_count]
     """Создать переменную со списком постов."""
     context = {
         'posts': posts,
@@ -26,9 +26,9 @@ def group_posts(request, slug):
     делает запрос к models, берет необходимый шаблон
     и возвращает пользователю."""
     group = get_object_or_404(Group, slug=slug)
-    """Взять объект из моедли Group, 
+    """Взять объект из моедли Group,
     где уникальный url фрагмент будет соответствовать фрагменту в запросе."""
-    posts = group.posts.select_related('author').filter(group=group)[:post_count]
+    posts = group.posts.select_related('author').filter(group=group)[:p_count]
     """Создать переменную со списком постов."""
     template = 'posts/group_list.html'
     """Взять шаблон из templates."""
