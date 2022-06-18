@@ -13,7 +13,12 @@
     </p>
     <hr>
 
-    {% include '../includes/post_loop.html' %}
+    {% for post in posts %}
+      {% include '../includes/post_loop.html' %}
+      {% if not forloop.last %}
+        <hr>
+      {% endif %}
+    {% endfor %}
 
   </div>
 {% endblock %}
