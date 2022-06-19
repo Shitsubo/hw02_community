@@ -8,6 +8,7 @@
   <div class="container py-5">
     <h1>Последние обновления на сайте</h1>
     <hr>
+
     {% for post in posts %}
       {% include '../includes/post_loop.html' %}
       {% if not forloop.last %}
